@@ -1,0 +1,17 @@
+@if (book) {
+  <div class="book">
+    <div class="title">{{ book.title }}</div>
+
+    <div class="price">{{ book.price| discount:19 | currency: 'ILS'   }}</div>
+
+<!--    <div class="date">{{book.publishDate | date: 'long'}}</div>-->
+
+    <img [src]="book.image">
+
+    @if(!inCart) {
+    <button (click)="addToCartHandler(book)">Add To Cart</button>
+    } @else {
+      <button (click)="removeFromCartHandler(book)">Remove From Cart</button>
+    }
+  </div>
+}

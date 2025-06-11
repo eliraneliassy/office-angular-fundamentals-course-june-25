@@ -1,0 +1,12 @@
+.book{
+  // min-width: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+  }
+}
