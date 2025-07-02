@@ -1,10 +1,17 @@
-.books {
-
+.header{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
+  .links{
+    ul{
+      list-style: none;
+      display: flex;
+      justify-content: center;
 
+      li{
+        margin: 0 10px;
+      }
+    }
+  }
 }
-
-

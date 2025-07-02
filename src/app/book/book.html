@@ -2,14 +2,15 @@
   <div class="book">
     <div class="title">{{ book.title }}</div>
 
-    <div class="price">{{ book.price| discount:19 | currency: 'ILS'   }}</div>
+    <div class="price">{{ book.price| discount:19 | currency: 'USD' }}</div>
 
-<!--    <div class="date">{{book.publishDate | date: 'long'}}</div>-->
+    <!--    <div class="date">{{book.publishDate | date: 'long'}}</div>-->
+<!--    <a routerLink="/product/{{book.id}}">-->
+      <img [src]="book.image" (click)="goToProduct()">
+<!--    </a>-->
 
-    <img [src]="book.image">
-
-    @if(!inCart) {
-    <button (click)="addToCartHandler(book)">Add To Cart</button>
+    @if (!inCart) {
+      <button (click)="addToCartHandler(book)">Add To Cart</button>
     } @else {
       <button (click)="removeFromCartHandler(book)">Remove From Cart</button>
     }

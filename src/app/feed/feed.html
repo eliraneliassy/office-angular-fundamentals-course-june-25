@@ -1,0 +1,9 @@
+<h2>Books:</h2>
+<div class="books">
+  @for (b of books; track b.id) {
+    <app-book [book]="b"
+              (addToCart)="addToCartInApp($event)"
+              [inCart]="false"
+    ></app-book>
+  }
+</div>
