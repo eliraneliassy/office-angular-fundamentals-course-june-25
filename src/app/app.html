@@ -2,9 +2,16 @@
   <h1>My Amazing Books Store</h1>
   <div class="links">
     <ul>
-      <li><a routerLink="feed">Feed</a></li>
-      <li><a routerLink="cart">Cart</a></li>
-      <li># of Items: 0</li>
+      @if (isLoggedIn) {
+        <li><a routerLink="feed">Feed</a></li>
+        <li><a routerLink="cart">Cart</a></li>
+        <li># of Items: {{numberOfItems}}</li>
+        <li (click)="logout()">Logout</li>
+      } @else {
+        <li><a routerLink="/auth/login">Login</a></li>
+        <li><a routerLink="/auth/register">Register</a></li>
+      }
+
     </ul>
   </div>
 </div>

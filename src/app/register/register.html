@@ -1,0 +1,34 @@
+<form #form="ngForm" (ngSubmit)="register()">
+
+  <div>
+    <label for="name"></label>
+    <input type="text"
+           ngModel
+           name="name"
+           required
+           minlength="2"
+           #name="ngModel"
+    >
+    @if (name.hasError('required') && name.touched) {
+      <small class="error">Name Cannot Be Empty</small>
+    }
+    @if (name.hasError('minLength') && name.touched) {
+      <small class="error">Name should be at least 2 charcters</small>
+    }
+
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input name="email" type="email">
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input name="password" type="password">
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="!form.valid">Register</button>
+  </div>
+</form>

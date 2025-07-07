@@ -15,7 +15,13 @@ export class Cart {
 
   cartService: CartService = inject(CartService);
 
-  cart: Book[] = this.cartService.cart;
+  cart: Book[] = [];// this.cartService.cart;
+
+  constructor() {
+    this.cartService.getCart().subscribe(
+      (res: Book[])=> this.cart = res
+    )
+  }
 
 
   removeFromCart(book: Book) {

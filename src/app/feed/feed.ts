@@ -20,8 +20,8 @@ export class Feed {
   booksService: BooksService = inject(BooksService);
 
   constructor() {
-    this.booksService.getBooks('Angular').subscribe(
-      (books: Book[])=> this.books = books
+    this.booksService.getBooks('Harry Potter').subscribe(
+      (res: Book[])=> this.books = res
     )
   }
 

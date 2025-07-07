@@ -12,6 +12,8 @@ export class BooksService {
 
   private BASE_URL = `https://www.googleapis.com/books/v1/volumes`
 
+
+
   getBooks(query: string): Observable<Book[]> {
     return this.httpClient.get<any>(`${this.BASE_URL}?q=${query}`)
       .pipe(
@@ -20,7 +22,7 @@ export class BooksService {
           title: item.volumeInfo.title,
           author: item.volumeInfo.author,
           description: item.volumeInfo.description,
-          image: item.volumeInfo.imageLinks.thumbnail,
+          image: item.volumeInfo.imageLinks?.thumbnail,
           price: item.volumeInfo.pageCount,
           id: item.id,
           publishDate: item.volumeInfo.publishedDate
