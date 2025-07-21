@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   templateUrl: './register.html',
-  styleUrl: './register.scss'
+  styleUrl: './register.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Register {
 

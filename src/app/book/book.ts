@@ -24,8 +24,7 @@ import {Router, RouterLink} from '@angular/router';
   selector: 'app-book',
   imports: [
     CurrencyPipe,
-    DiscountPipe,
-    RouterLink
+    DiscountPipe
   ],
   templateUrl: './book.html',
   styleUrl: './book.scss',

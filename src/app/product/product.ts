@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {BookComponent} from '../book/book';
 import {Book} from '../book.interface';
 import {ActivatedRoute} from '@angular/router';
@@ -10,7 +10,8 @@ import {BOOKS} from '../BOOKS';
     BookComponent
   ],
   templateUrl: './product.html',
-  styleUrl: './product.scss'
+  styleUrl: './product.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Product {
   activatedRoute: ActivatedRoute = inject(ActivatedRoute);

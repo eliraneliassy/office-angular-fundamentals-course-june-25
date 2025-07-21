@@ -1,23 +1,25 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
-import {Book} from './book.interface';
-import {BookComponent} from './book/book';
 import {Auth} from './auth';
 import {CartService} from './cart';
 import {map, Observable, of} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
+import {MatToolbar} from '@angular/material/toolbar';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   imports: [
-    BookComponent,
     RouterOutlet,
     RouterLink,
-    AsyncPipe
+    AsyncPipe,
+    MatToolbar,
+
   ],
 
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
 

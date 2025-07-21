@@ -3,6 +3,10 @@
   justify-content: space-between;
   align-items: center;
 
+  mat-toolbar{
+    background-color: blueviolet;
+  }
+
   .links{
     ul{
       list-style: none;

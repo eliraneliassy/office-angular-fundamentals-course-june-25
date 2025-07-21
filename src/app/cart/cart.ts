@@ -1,4 +1,13 @@
-import {Component, DestroyRef, DoCheck, inject, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  DoCheck,
+  inject,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges
+} from '@angular/core';
 import {BookComponent} from "../book/book";
 import {Book} from '../book.interface';
 import {CartService} from '../cart';
@@ -13,7 +22,8 @@ import {AsyncPipe} from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './cart.html',
-  styleUrl: './cart.scss'
+  styleUrl: './cart.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Cart implements DoCheck, OnDestroy {
 

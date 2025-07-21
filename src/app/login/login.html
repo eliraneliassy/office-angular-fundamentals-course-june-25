@@ -1,31 +1,55 @@
 <form [formGroup]="form">
-  <div>
-    <label >Email</label>
-    <input name="email" formControlName="email">
-    @if(form.controls.email.hasError('email')
-      && form.controls.email.touched) {
-      <small class="error">Invalid Email format</small>
-    }
-    @if(form.controls.email.hasError('required')
-      && form.controls.email.touched) {
-      <small class="error">Email cannot be empty</small>
-    }
 
-  </div>
 
-  <div>
-    <label for="password">Password:</label>
-    <input name="password" formControlName="password" type="password">
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="Please enter your email"
+        formControlName="email"
+        required
+      />
+      @if(form.controls.email.hasError('email')
+      && form.controls.email.touched) {
+        <mat-error>Invalid Email format</mat-error>
+
+      }
+      @if(form.controls.email.hasError('required')
+      && form.controls.email.touched) {
+        <mat-error>Email cannot be empty</mat-error>
+
+      }
+
+    </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password:</mat-label>
+    <input
+      matInput
+      placeholder="Please enter your password"
+      formControlName="password"
+
+    />
+
     @if(form.controls.password.hasError('pattern') && form.controls.password.touched) {
-      <small class="error">Invalid password format</small>
+      <mat-error>Invalid Password Format</mat-error>
     }
+
+    @if(form.controls.email.hasError('required')
+    && form.controls.email.touched) {
+      <mat-error>Email cannot be empty</mat-error>
+
+    }
+
     @if(form.controls.password.hasError('required') && form.controls.password.touched) {
-      <small class="error">Password cannot be empty</small>
+      <mat-error>Password cannot be empty</mat-error>
     }
-  </div>
+
+  </mat-form-field>
+
 
   <div>
-    <button (click)="login()" [disabled]="!form.valid">Login</button>
+    <button matButton="outlined" (click)="login()" [disabled]="!form.valid">Login</button>
   </div>
 
 

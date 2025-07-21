@@ -1,16 +1,25 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {Auth} from '../auth';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {map} from 'rxjs';
+import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatFormField,
+    MatButton
   ],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrl: './login.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Login {
 

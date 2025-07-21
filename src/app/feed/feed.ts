@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {BookComponent} from '../book/book';
 import {Book} from '../book.interface';
 import {CartService} from '../cart';
@@ -14,7 +14,8 @@ import {AsyncPipe} from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './feed.html',
-  styleUrl: './feed.scss'
+  styleUrl: './feed.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Feed {
   books$: Observable<Book[]> = of([]);
