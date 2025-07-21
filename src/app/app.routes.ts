@@ -18,7 +18,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./../app/feed/feed').then(c => c.Feed),
     // canActivate: [authGuard]
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
   {
     path: 'cart',

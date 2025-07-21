@@ -18,6 +18,8 @@ import {Book} from '../book.interface';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 import {DiscountPipe} from '../discount-pipe';
 import {Router, RouterLink} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {Product} from '../product/product';
 
 
 @Component({
@@ -40,6 +42,7 @@ export class BookComponent  {
   @Output() removeFromCart = new EventEmitter<Book>();
 
   router = inject(Router);
+  dialog = inject(MatDialog);
 
   addToCartHandler(book: Book | undefined) {
     this.addToCart.emit(book);
@@ -50,7 +53,11 @@ export class BookComponent  {
   }
 
   goToProduct() {
-    this.router.navigate(['/product', this.book?.id]);
+    // this.router.navigate(['/product', this.book?.id]);
+    this.dialog.open(Product, {
+      data: this.book,
+
+    }).afterClosed().subscribe(result => {console.log('The dialog was closed', result)});
     //this.router.navigateByUrl('/product/' + id);
   }
 

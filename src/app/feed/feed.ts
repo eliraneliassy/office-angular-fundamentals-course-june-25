@@ -4,7 +4,7 @@ import {Book} from '../book.interface';
 import {CartService} from '../cart';
 import {BOOKS} from '../BOOKS';
 import {BooksService} from '../books-service';
-import {debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap} from 'rxjs';
+import {debounceTime, distinctUntilChanged, Observable, of, startWith, Subject, switchMap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 
 @Component({
@@ -29,6 +29,7 @@ export class Feed {
 
     this.books$ = this.search$
       .pipe(
+        startWith('Angular'),
         debounceTime(300),
         distinctUntilChanged(),
         switchMap(term => term ? this.booksService.getBooks(term) : of([]))
