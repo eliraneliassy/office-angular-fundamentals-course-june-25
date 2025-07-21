@@ -4,28 +4,43 @@ import {Book} from '../book.interface';
 import {CartService} from '../cart';
 import {BOOKS} from '../BOOKS';
 import {BooksService} from '../books-service';
+import {debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-feed',
   imports: [
-    BookComponent
+    BookComponent,
+    AsyncPipe
   ],
   templateUrl: './feed.html',
   styleUrl: './feed.scss'
 })
 export class Feed {
-  books: Book[] = [];
+  books$: Observable<Book[]> = of([]);
 
   cartService: CartService = inject(CartService);
   booksService: BooksService = inject(BooksService);
 
+  search$ = new Subject<string>();
+
   constructor() {
-    this.booksService.getBooks('Harry Potter').subscribe(
-      (res: Book[])=> this.books = res
-    )
+
+    this.books$ = this.search$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(term => term ? this.booksService.getBooks(term) : of([]))
+      )
+
   }
 
   addToCartInApp(book: Book) {
     this.cartService.addToCart(book);
+  }
+
+  search(event: KeyboardEvent) {
+    // console.log((event.target as any).value);
+    this.search$.next((event.target as any).value);
   }
 }

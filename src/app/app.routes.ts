@@ -4,6 +4,7 @@ import {Cart} from './cart/cart';
 import {Product} from './product/product';
 import {Login} from './login/login';
 import {Register} from './register/register';
+import {authGuard} from './auth-guard';
 
 export const routes: Routes = [
   {
@@ -13,15 +14,18 @@ export const routes: Routes = [
   },
   {
     path: 'feed',
-    component: Feed
+    component: Feed,
+    canActivate: [authGuard]
   },
   {
     path: 'cart',
-    component: Cart
+    component: Cart,
+    canActivate: [authGuard]
   },
   {
     path: 'product/:id',
-    component: Product
+    component: Product,
+    canActivate: [authGuard]
   },
   {
     path: 'auth',

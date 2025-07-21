@@ -7,7 +7,8 @@ import {BehaviorSubject, map, Observable} from 'rxjs';
 })
 export class CartService {
 
-  private cart$: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
+  private cart$: BehaviorSubject<Book[]> =
+    new BehaviorSubject<Book[]>([]);
 
   numberOfItems$: Observable<number> =
     this.cart$.pipe(map(books => books.length));

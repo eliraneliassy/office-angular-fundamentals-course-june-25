@@ -2,11 +2,11 @@
   <h1>My Amazing Books Store</h1>
   <div class="links">
     <ul>
-      @if (isLoggedIn) {
+      @if (isLoggedIn$ | async) {
         <li><a routerLink="feed">Feed</a></li>
         <li><a routerLink="cart">Cart</a></li>
-        <li># of Items: {{numberOfItems}}</li>
-        <li (click)="logout()">Logout</li>
+        <li># of Items: {{numberOfItems$ | async}}</li>
+        <li (click)="logout()"><a> Logout</a></li>
       } @else {
         <li><a routerLink="/auth/login">Login</a></li>
         <li><a routerLink="/auth/register">Register</a></li>

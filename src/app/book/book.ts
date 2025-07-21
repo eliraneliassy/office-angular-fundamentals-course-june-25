@@ -1,8 +1,24 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {Book} from '../book.interface';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 import {DiscountPipe} from '../discount-pipe';
 import {Router, RouterLink} from '@angular/router';
+
 
 @Component({
   selector: 'app-book',
@@ -15,7 +31,7 @@ import {Router, RouterLink} from '@angular/router';
   styleUrl: './book.scss',
 
 })
-export class BookComponent {
+export class BookComponent  {
 
   @Input({required: true}) book?: Book;
 
@@ -38,4 +54,5 @@ export class BookComponent {
     this.router.navigate(['/product', this.book?.id]);
     //this.router.navigateByUrl('/product/' + id);
   }
+
 }

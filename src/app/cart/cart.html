@@ -1,7 +1,7 @@
 <h2>Shopping Cart:</h2>
 
 <div class="books">
-  @for (book of cart; track book.id) {
+  @for (book of cart$ | async; track book.id) {
     <app-book
       [book]="book"
       (removeFromCart)="removeFromCart($event)"

@@ -1,6 +1,10 @@
 <h2>Books:</h2>
+<div class="control">
+  <input type="text" placeholder="Search" (keyup)="search($event)">
+</div>
 <div class="books">
-  @for (b of books; track b.id) {
+
+  @for (b of books$ | async; track b.id) {
     <app-book [book]="b"
               (addToCart)="addToCartInApp($event)"
               [inCart]="false"

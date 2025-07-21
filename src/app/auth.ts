@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
 
-  userName$:
+  private userName$:
     BehaviorSubject<string | undefined | null> = new BehaviorSubject<string | undefined | null>(undefined);
+
+  isLoggedIn$: Observable<boolean> = this.userName$
+    .pipe(map(name => name !== undefined)) ;
+
+  getUser() {
+    return this.userName$.asObservable();
+  }
+
 
   login(name: string | undefined | null) {
     // this.userName = name;

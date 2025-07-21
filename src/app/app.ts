@@ -4,6 +4,8 @@ import {Book} from './book.interface';
 import {BookComponent} from './book/book';
 import {Auth} from './auth';
 import {CartService} from './cart';
+import {map, Observable, of} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,8 @@ import {CartService} from './cart';
   imports: [
     BookComponent,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    AsyncPipe
   ],
 
   styleUrl: './app.scss'
@@ -21,11 +24,11 @@ export class App {
 
   authService = inject(Auth);
   // isLoggedIn = this.authService.userName !== undefined;
-  isLoggedIn = false;
+  isLoggedIn$: Observable<boolean> = of(false);
   router = inject(Router);
   cartService = inject(CartService);
 
-  numberOfItems = 0;
+  numberOfItems$: Observable<number> = this.cartService.numberOfItems$
 
   logout() {
     this.authService.logout();
@@ -33,13 +36,13 @@ export class App {
   }
 
   constructor() {
-    this.authService.userName$
-      .subscribe((userName) =>
-        this.isLoggedIn = userName !== undefined);
+    this.isLoggedIn$ = this.authService.getUser()
+      .pipe(
+        map((userName) =>
+          userName !== undefined)
+      )
 
-    this.cartService.numberOfItems$
-      .subscribe((numberOfItems) =>
-        this.numberOfItems = numberOfItems)
+
 
   }
 }
